@@ -1,12 +1,16 @@
 <template>
-  <section>
-      <div class="container ">
-          <div class="card">
+    <section>
+        <div class="container d-flex">
+            <div v-for="(album, index) in albumsList" :key="`album-${index}`" class="card" >
+                <img :src="album.poster" :alt="album.title">
+                <h3>{{ album.title }}</h3>
+                <h5>{{ album.author }}</h5>
+                <p>{{ album.year }}</p>
+                <h5>{{ album.genre }}</h5>
+            </div>
+        </div>
 
-          </div>
-      </div>
-
-  </section>
+    </section>
 </template>
 
 <script>
@@ -19,7 +23,7 @@ export default {
             albumsList: [],
         };
     },
-    create(){
+    created(){
         this.getAlbums();
     },
     methods:{
@@ -43,6 +47,10 @@ export default {
 
         .container{
             padding-top: 100px;
+        }
+
+        .card{
+            width: calc(100% / 8);
         }
         
     }
