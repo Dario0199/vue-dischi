@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="container-album d-flex flex-wrap justify-content-center p-0.5">
+        <div v-if="albumsList !== null" class="container d-flex flex-wrap justify-content-center p-0.5">
             <div v-for="(album, index) in albumsList" :key="`album-${index}`" class="cards" >
                 <div class="music p-3 text-center">
                     <div class="image">
@@ -13,7 +13,9 @@
                 </div>
             </div>
         </div>
-
+        <div v-else class="load">
+            <h2>Loading...</h2>
+        </div>
     </section>
 </template>
 
@@ -24,7 +26,7 @@ export default {
     name: 'Main',
     data(){
         return{
-            albumsList: [],
+            albumsList: null,
         };
     },
     created(){
@@ -49,41 +51,51 @@ export default {
         background: $secondary-color;
         height: 100%;
 
-        .container-album{
+        .container{
             margin: 0 auto;
-            width: 90%;
             padding-top: 100px;
             padding-bottom: 20px;
-        }
-
-        .cards{
-            width: calc(100% / 8);
-            padding: 3px;
-            margin-bottom: 10px;
-            
-
-            .music{
-                background: $primary-color;
-                height: 100%;
-
-                img{
-                    width: 100%;
-                }
-
-                h5,
-                p{
-                    color: grey;
-                }
-
-                h4,
-                h6{
-                    color: white;
-                }
-            }
-            
-
-            
-        }
         
+
+            .cards{
+                width: calc(100% / 8);
+                padding: 10px;
+                
+                
+
+                .music{
+                    background: $primary-color;
+                    height: 100%;
+
+                    img{
+                        width: 100%;
+                    }
+
+                    h5,
+                    p{
+                        color: $text-secondary-color;
+                    }
+
+                    h4,
+                    h6{
+                        color: $text-primary-color;
+                    }
+                }
+                
+
+                
+            }
+        }
+        .load{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h2{
+                color: $text-primary-color;
+            }
+        }
     }
 </style>
