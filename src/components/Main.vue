@@ -3,9 +3,7 @@
         <div v-if="albumsList !== null" class="container d-flex flex-wrap justify-content-center p-0.5">
             <div v-for="(album, index) in albumsList" :key="`album-${index}`" class="cards" >
                 <div class="music p-3 text-center">
-                    <div class="image">
-                        <img class="mb-2" :src="album.poster" :alt="album.title">
-                    </div>
+                    <img class="mb-2" :src="album.poster" :alt="album.title">
                     <h4>{{ album.title }}</h4>
                     <h5>{{ album.author }}</h5>
                     <p>{{ album.year }}</p>
@@ -75,10 +73,22 @@ export default {
                     p{
                         color: $text-secondary-color;
                     }
+                    
+                    h5{
+                        font-size: 15px;
+                    }
+
+                    p{
+                        font-size: 13px;
+                    }
 
                     h4,
                     h6{
                         color: $text-primary-color;
+                    }
+
+                    h4{
+                        font-size: 17px;
                     }
                 }
                 
