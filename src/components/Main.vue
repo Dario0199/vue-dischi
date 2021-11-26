@@ -1,7 +1,7 @@
 <template>
     <section>
-        <div v-if="albumsList !== null" class="container d-flex flex-wrap justify-content-center p-0.5">
-            <div v-for="(album, index) in albumsList" :key="`album-${index}`" class="cards" >
+        <div v-if="albums !== null" class="container d-flex flex-wrap justify-content-center p-0.5">
+            <div v-for="(album, index) in albums" :key="`album-${index}`" class="cards" >
                 <div class="music p-3 text-center">
                     <img class="mb-2" :src="album.poster" :alt="album.title">
                     <h4>{{ album.title }}</h4>
@@ -18,27 +18,12 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
     name: 'Main',
-    data(){
-        return{
-            albumsList: null,
-        };
-    },
-    created(){
-        this.getAlbums();
-    },
-    methods:{
-        getAlbums(){
-            axios.get('https://flynn.boolean.careers/exercises/api/array/music')
-            .then(result => { 
-                console.log(result.data);
-                this.albumsList = result.data.response;
-            })
-            .catch(error => console.log(error.data))
-        }
+
+    props:{
+        albums: Array
     }
 }
 </script>
