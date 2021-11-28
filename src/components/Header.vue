@@ -1,13 +1,17 @@
 <template>
   <header>
-      <img src="../assets/logo (1).png" alt="spotify">
-      <select @click.prevent="$emit('genList', valGenre)">
-          <option value="">All genre</option>
-          <option value="Pop">Pop</option>
-          <option value="Rock">Rock</option>
-          <option value="Metal">Metal</option>
-          <option value="Jazz">Jazz</option>
+    <img src="../assets/logo (1).png" alt="spotify">
+    <div>
+        <select v-model="valGenre" 
+        @change="$emit('genList', valGenre)"> 
+            <option value="">All genre</option>
+            <option value="Pop">Pop</option>
+            <option value="Rock">Rock</option>
+            <option value="Metal">Metal</option>
+            <option value="Jazz">Jazz</option>
       </select>
+      <!-- <button @click.prevent="$emit('genList', valGenre)">Search</button> -->
+    </div>
   </header>
 </template>
 
@@ -17,10 +21,8 @@ export default {
     data() {
         return{
             valGenre: '',
-
         }
-    },
-    
+    },   
 }
 </script>
 

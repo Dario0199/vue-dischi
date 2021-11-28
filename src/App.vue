@@ -19,23 +19,36 @@ export default {
   },
   data(){
         return{
-            albumsList: null,
+          albumsList: null,
+          
         };
-    },
-    created(){
-        this.getAlbums();
-    },
-    methods:{
-        getAlbums(){
-            axios.get('https://flynn.boolean.careers/exercises/api/array/music')
-            .then(result => { 
-                console.log(result.data);
-                this.albumsList = result.data.response;
-            })
-            .catch(error => console.log(error.data))
-        }
+  },
+  created(){
+    this.getAlbums();
+    this.showList();
+  },
+  computed:{
+    showList(){
+      if(this.valGenre === ""){
+        return this.albumsList
+      }
+      return this.albumsList.filter(album => album.genre === this.valGenre);
+      console.log(this.albumsList);
     }
+  },
+  methods:{
+    getAlbums(){
+      axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+      .then(result => { 
+        console.log(result.data);
+        this.albumsList = result.data.response;
+      })
+      .catch(error => console.log(error.data))
+    }
+
+  }
 }
+
 </script>
 
 <style lang="scss">
